@@ -1,0 +1,70 @@
+const puppy = require("puppeteer") ;
+
+//ill be posting this on facebook
+const about = "my first project" ;
+
+//this is my facebook email id
+const id = "taviyem687@animex98.com" ;
+// this is my facebook password
+const pass = "suribhai@1234" ;
+
+//here goes my code
+async function main(){
+    let browser = await puppy.launch({
+        headless : false ,
+        defaultViewport : false 
+    }) ;
+    let tabs = await browser.pages() ;
+    let tab = tabs[0] ;
+    //go to google.com
+    await tab.goto("https://google.com") ;
+    await tab.waitForSelector(".gLFyf.gsfi") ;
+    //click on search bar
+    await tab.click(".gLFyf.gsfi") ;
+    //search for facebook
+    await tab.type(".gLFyf.gsfi" , "facebook") ;
+    await tab.keyboard.press("Enter") ;
+    
+    await tab.waitForSelector('a[href = "https://www.facebook.com/"]' , {visible : true}) ;
+    await tab.click('a[href = "https://www.facebook.com/"]') ;
+    await tab.waitForSelector("#email") ;
+
+    //type your email id
+    await tab.type("#email" , id) ;
+
+    //click on password bar
+    await tab.click("#passContainer") ;
+    //type your password
+    await tab.type("#passContainer" , pass) ;
+    
+    //with this you will now login to the facebook
+    await tab.click("#passContainer") ;
+    await tab.keyboard.press("Enter") ;
+
+    //ill wait for some time so that i am not considered as a bot
+    await tab.waitForTimeout(5000);
+
+    await tab.mouse.click(500, 500, { button: 'left' }) ;
+
+    //so that they dont think that i am a bot
+    await tab.waitForTimeout(7000);
+
+    //click on status bar
+    await tab.click(".a8c37x1j.ms05siws.hwsy1cff.b7h9ocf4.aaxa7vy3") ;
+    await tab.waitForSelector(".oajrlxb2.b3i9ofy5.qu0x051f.esr5mh6w.e9989ue4.r7d6kgcz.rq0escxv.nhd2j8a9.j83agx80.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.cxgpxx05.d1544ag0.sj5x9vvc.tw6a2znq.i1ao9s8h.esuyzwwr.f1sip0of.lzcic4wl.l9j0dhe7.abiwlrkh.p8dawk7l.bp9cbjyn.orhb3f3m.czkt41v7.fmqxjp7s.emzo65vh.btwxx1t3.buofh1pr.idiwt2bm.jifvfom9.kbf60n1y") ;
+    await tab.click(".oajrlxb2.b3i9ofy5.qu0x051f.esr5mh6w.e9989ue4.r7d6kgcz.rq0escxv.nhd2j8a9.j83agx80.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.cxgpxx05.d1544ag0.sj5x9vvc.tw6a2znq.i1ao9s8h.esuyzwwr.f1sip0of.lzcic4wl.l9j0dhe7.abiwlrkh.p8dawk7l.bp9cbjyn.orhb3f3m.czkt41v7.fmqxjp7s.emzo65vh.btwxx1t3.buofh1pr.idiwt2bm.jifvfom9.kbf60n1y") ;
+    
+    await tab.waitForSelector(".notranslate._5rpu" , {visible:true}) ;
+    await tab.click(".notranslate._5rpu") ;
+    //type you status
+    await tab.type(".notranslate._5rpu" , about) ;
+    await tab.waitForTimeout(4000) ;
+    //podt your status
+    await tab.click(".k4urcfbm.dati1w0a.hv4rvrfc.i1fnvgqd.j83agx80.rq0escxv.bp9cbjyn.discj3wi") ;
+    await tab.waitForTimeout(5000) ;
+    
+
+
+    
+}
+main() ;
